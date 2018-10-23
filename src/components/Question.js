@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
-
+import { Link } from 'react-router-dom'
 
 class Question extends Component {
  
   render() {
 	console.log('question', this.props)
    	const {author, text1, text2, avatar, date} = this.props.question;
+    const { id } = this.props;
     return (
       <div className="card">
         <div className="headerCard">
@@ -32,7 +33,8 @@ class Question extends Component {
 		</div>
 	  </div>
 	  <div className="fotterCard">
-	  	<div className="button">Check detail</div>
+	  	<Link to={`/question/${id}`} className="button">Check detail</Link>
+
 	  </div>
 	  
       </div>

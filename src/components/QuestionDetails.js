@@ -126,8 +126,8 @@ handleOptionChange = (e) => {
   }
 }
  function mapStateToProps ({ authedUser, questions, users }, props) {
-  const { id } = props.match.params
-  const question = questions[id] ? formatQuestion(questions[id], users) : null
+  const { question_id } = props.match.params
+  const question = questions[question_id] ? formatQuestion(questions[question_id], users) : null
   const answer1 = question.votes1.find(x=> x == [authedUser]);
   const answer2 = question.votes2.find(x=> x == [authedUser]);
   const wasAnswered = answer2 !== undefined || answer1 !== undefined ? true : false
@@ -145,7 +145,7 @@ console.log('respuesta 2', answer2, question.text2)
   } 
   console.log(authedUser, question.votes1, question.votes2, wasAnswered)
    return {
-    id,
+    id:question_id,
     question: question,
     wasAnswered,
 	userVotesFor,

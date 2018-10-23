@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+
 import LoadingBar from 'react-redux-loading'
 
 import Dashboard from './Dashboard'
 import QuestionDetails from './QuestionDetails'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
+import Nav from './Nav'
 
 import './../App.css';
 
@@ -17,17 +21,24 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App">
-       <LoadingBar />
-       {this.props.loading === true
-            ? null
-            : <div>
-               
-      { /*<QuestionDetails match={{params: {id: 'vthrdm985a262al8qx3do'}}}/>*/}
-      			<LeaderBoard/>
-              </div>}
-    	
-      </div>
+    
+ <Router>
+        <Fragment>
+          <LoadingBar />
+          <div className='container'>
+            <Nav />
+            {this.props.loading === true
+              ? null
+              : <div>
+                  <Route path='/' exact component={Dashboard} />
+                  <Route path='/question/:question_id' component={QuestionDetails} />
+                  <Route path='/add' component={NewQuestion} />
+				  <Route path='/leaderboard' component={LeaderBoard} />
+                </div>}
+          </div>
+        </Fragment>
+      </Router>
+
     );
   }
 }
