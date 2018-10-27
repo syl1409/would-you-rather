@@ -3,11 +3,14 @@ import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
 import { Line } from 'rc-progress';
 import { handleSaveAnswer } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
+
 
  class QuestionDetails extends Component {
    
     state = {
-    selectedOption: 'optionOne'
+    selectedOption: 'optionOne',
+    toDashboar:false
   }
    
     handleSubmit = (e) => {
@@ -20,6 +23,9 @@ import { handleSaveAnswer } from '../actions/questions'
        authedUser,
        answer
      }))
+    this.setState(() => ({
+      toDashboard: true
+    }))
   }
 
 handleOptionChange = (e) => {
@@ -30,6 +36,12 @@ handleOptionChange = (e) => {
     }))
   }
   render() {
+    if (this.state.toDashboard === true) {
+      return <Redirect to='/' />
+    }
+      if (this.props.authedUser === null) {
+      return <Redirect to='/login' />
+    }
     console.log('data', this.props);
     const { id, userVotesFor, wasAnswered } = this.props
     const {author, text1, text2, votes1, votes2, avatar, date} = this.props.question;
@@ -126,6 +138,7 @@ handleOptionChange = (e) => {
   }
 }
  function mapStateToProps ({ authedUser, questions, users }, props) {
+ if(authedUser !== null){
   const { question_id } = props.match.params
   const question = questions[question_id] ? formatQuestion(questions[question_id], users) : null
   const answer1 = question.votes1.find(x=> x == [authedUser]);
@@ -153,6 +166,11 @@ console.log('respuesta 2', answer2, question.text2)
 
        
   }
+}else{
+ return {
+    authedUser
+  }
+}
 
 }
  export default connect(mapStateToProps)(QuestionDetails) 

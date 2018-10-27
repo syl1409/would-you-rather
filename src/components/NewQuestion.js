@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleNewQuestion } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
+
 
 class NewQuestion extends Component {
   state = {
     text1: '',
     text2: '',
+    toDashboard:false
   }
   handleChange1 = (e) => {
     const text = e.target.value
@@ -27,11 +30,22 @@ class NewQuestion extends Component {
     const { text1, text2 } = this.state
     const { dispatch } = this.props
     dispatch(handleNewQuestion(text1, text2));
+     this.setState(() => ({
+      toDashboard: true
+    }))
   }
   render() {
+    console.log('data', this.props.authedUser);
+     if (this.props.authedUser === null ) {
+      return <Redirect to='/login' />
+    }
+      
+   if (this.state.toDashboard === true) {
+      return <Redirect to='/' />
+    }
    const{ text1, text2} = this.state
     return (
-      <div clss="card">
+      <div className="card containerApp">
         <h3 className='center'>Compose new Question</h3>
       	<h4>Would you rather:</h4>
         <form className='new-question' onSubmit={this.handleSubmit}>
@@ -49,7 +63,7 @@ class NewQuestion extends Component {
           />
          
           <button
-            className='btn'
+            className='button'
             type='submit'
             disabled={text1 === '' || text2 ===''}>
               Submit
@@ -60,4 +74,12 @@ class NewQuestion extends Component {
   }
 }
 
-export default connect()(NewQuestion)
+function mapStateToProps ({ authedUser }) {
+
+  return {
+    authedUser:authedUser
+
+  }
+}
+
+export default connect(mapStateToProps)(NewQuestion)

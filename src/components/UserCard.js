@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { TiStarOutline } from "react-icons/ti";
+
+
 
 
 class UserCard extends Component {
@@ -10,7 +13,14 @@ class UserCard extends Component {
 
     return (
       <div className="card">
-      
+      <div className="headerCard">
+      	<div className="number">{this.props.i + 1}</div>
+      	<h3>{name}</h3>
+		<div className="score">
+			<TiStarOutline/><span>Score</span>
+			<span>{Object.values(answers).length +questions.length }</span>
+		</div>
+      </div>
       <div className="bodyCard">
 		<div className="avatar" >
  			<img
@@ -21,16 +31,13 @@ class UserCard extends Component {
 		</div>
 
 		<div className="question">
-			<h3>{name}</h3>
+			
 			<ul>
 				<li>Answered questions: {Object.values(answers).length}</li>
 				<li>created Questions: {questions.length}</li>
 			</ul>
 		</div>
-	<div className="score">
-			<h3>Score</h3>
-			<h4>{Object.values(answers).length +questions.length }</h4>
-		</div>
+	
 	  </div>
 	  
 	  
@@ -39,11 +46,5 @@ class UserCard extends Component {
   }
 }
 
-function mapStateToProps ({ users }, { id }) {
 
-     return {
-      users
-    }
-}
-
-export default connect(mapStateToProps)(UserCard)
+export default connect()(UserCard)

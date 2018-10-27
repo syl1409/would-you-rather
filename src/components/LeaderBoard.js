@@ -2,19 +2,24 @@ import React, { Component, Fragment  } from 'react'
 import { connect } from 'react-redux'
 import UserCard from './UserCard'
 import { compareValues } from '../utils/helpers'
+import { Redirect } from 'react-router-dom'
+
 
 class LeaderBoard extends Component {
+ 
 
   render() {
+     if (this.props.authedUser === null) {
+      return <Redirect to='/login' />
+    }
     console.log('leaderBoard', this.props);
-    const { users } = this.props
+    const { users } = this.props;
    
     return (
-      <div>
-      LeaderBoard
-      {users.map((user)=>(
-      <li key={user.id}>
-    	<UserCard user={user}/>
+      <div className="containerApp">
+      {users.map((user, index)=>(
+      <li key={user.id} className="cardUserScore">
+    	<UserCard user={user} i={index}/>
       </li>
     
     ))}
@@ -23,7 +28,7 @@ class LeaderBoard extends Component {
   }
 }
 
-function mapStateToProps ({ users  }) {
+function mapStateToProps ({ users, authedUser  }) {
   	let formatUsers = []
     Object.values(users).map((user)=>{
       const score = Object.values(user.answers).length + user.questions.length
@@ -41,7 +46,8 @@ function mapStateToProps ({ users  }) {
     })
 
   return {
-    users:formatUsers.sort(compareValues('score', 'desc'))
+    users:formatUsers.sort(compareValues('score', 'desc')),
+    authedUser
   }
 }
 

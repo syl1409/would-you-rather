@@ -1,7 +1,9 @@
 import React, { Component, Fragment  } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
-
+import { FaQuestionCircle} from "react-icons/fa";
+import { IoIosBulb } from "react-icons/io";
+import { Redirect } from 'react-router-dom'
 
 class Dashboard extends Component {
   state = {
@@ -13,20 +15,27 @@ class Dashboard extends Component {
       currentView: text
     });
     }
- tab2 = (text) => {
+  tab2 = (text) => {
      console.log(text);
     }
   render() {
+     if (this.props.authedUser === null) {
+      return <Redirect to='/login' />
+    }
     console.log('dashboard', this.props);
-    const {answeredQuestionID, otherQuestionsID } = this.props;
+    const {answeredQuestionID, otherQuestionsID, authedUser } = this.props;
 	const { currentView } = this.state;
-    
+	console.log('dashboard', authedUser);
+ 
     return (
-      <div>
+      <div className="containerApp">
       <div className="tabs">
       	<ul>
-      		<li onClick={()=>{this.tab('unanswered')}} className={currentView === 'unanswered' && 'active' }>Unanswered Questions</li>
-            <li onClick={()=>{this.tab('answered')}} className={currentView === 'answered' && 'active' }>Answered Questions</li>
+      		<li onClick={()=>{this.tab('unanswered')}} className={currentView === 'unanswered' ? 'active' : '' }>					<FaQuestionCircle/><span>Unanswered Questions</span>
+			</li>
+            <li onClick={()=>{this.tab('answered')}} className={currentView === 'answered' ? 'active' : '' }>
+				<IoIosBulb/>
+			<span>Answered Questions</span></li>
         </ul>
       </div>
 
@@ -63,6 +72,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps ({ questions, users, authedUser }) {
+  if(authedUser !== null){
  console.log('questions', questions)
   const actualUser = Object.values(users).filter(x=> x.id === authedUser)[0];
   
@@ -74,7 +84,13 @@ function mapStateToProps ({ questions, users, authedUser }) {
 
   return {
     answeredQuestionID: answerQuestionsId,
-    otherQuestionsID:otherQuestions
+    otherQuestionsID:otherQuestions,
+    authedUser
+  }
+  }else{
+     return {
+    authedUser
+  }
   }
 }
 

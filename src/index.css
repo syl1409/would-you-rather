@@ -12,6 +12,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.containerApp{
+width: 92%;
+margin:auto}
 
 .card {
     border: 1px solid #ccc;
@@ -56,24 +59,34 @@ code {
 .tabs li {
     list-style: none;
     display: inline-block;
-    width: 46%;
-    border-bottom: 1px solid #ccc;
+    width: 300px;
     padding: 10px;
     cursor:pointer;
 }
-.tabs li.active {
-    background-color: #35A594;
-    color: #fff;
-    border-radius: 4px 4px 0px 0px;
+
+.tabs ul {
+    border-bottom: 1px solid #ccc;
+    padding: 0;
 }
+
+.tabs ul li span {
+    margin: 0 0 0 7px;
+    position: relative;
+    top: -2px;
+}
+
+li.active {
+    border-bottom: #35A594 3px solid;
+    color: #35A594;
+}
+
 
 ul.panel li {
     list-style: none;
 }
 
-ul.panel {
-    width: 50%;
-    margin: auto;
+.fotterCard {
+    height: 30px;
 }
 
 .button {
@@ -110,7 +123,7 @@ span.badge {
     padding: 10px;
     display: none;
 }
-li.active {
+.results li.active {
     border: #64b787 2px solid !important;
     background: rgba(100,183,185, 0.2);
 }
@@ -159,9 +172,233 @@ form.new-question {
 }
 
 .score {
-    display: inline-block;
-    border: 1px solid #ccc;
+   
     margin: 10px 0 10px 15px;
     padding: 10px;
     text-align: center;
+  float:right
+}
+li.cardUserScore {
+    list-style: none;
+}
+
+.cardUserScore.headerCard .number, .cardUserScore .headerCard h3 {
+    display: inline-block;
+}
+.cardUserScore:first-child .number {
+    background: #dac409 !important;
+}
+
+.cardUserScore .headerCard h3 {
+    /* width: 300px; */
+    display: inline-block;
+}
+
+.cardUserScore .headerCard .number {
+    font-size: 20px;
+    background: #458594;
+    width: 31px;
+    height: 27px;
+    color: #fff;
+    text-align: center;
+    border-radius: 50px;
+    padding: 2px 0;
+    margin: 0 10px 0 0;
+    display: inline-block;
+}
+
+.cardUserScore .headerCard {
+    background: #35A594;
+    color: #fff;
+    margin: 0 0 10px;
+}
+
+li.cardUserScore:first-child .headerCard {
+    background: #b0a11e;
+}
+.login {
+    width: 300px;
+    margin: 76px auto;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.login h2 {
+    margin: 0;
+    padding: 10px 0;
+    background: #35A594;
+    color: #fff;
+}
+
+.login img {
+    width: 100%;
+}
+gin p {
+    color: #646464;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    width: 90%;
+    margin: 10px auto;
+    border-top: 1px solid #ccc;
+}
+
+.login select {
+    width: 95%;
+    height: 30px;
+    margin: 10px 0;
+}
+button.loginB {
+    background-color: #35A594;
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    color: #fff;
+    font-weight: bolder;
+    font-size: 15px;
+    margin: 10px 0 0;
+}
+.header {
+    background-color: #35A594;
+    height: 60px;
+    display: inline-block;
+    width: 100%;
+}
+.header {
+    background-color: #35A594;
+    height: 60px;
+    display: inline-block;
+    width: 100%;
+}
+
+.nav li {
+    display: inline-block;
+    color: #fff;
+    margin: 10px;
+    border-right:1px solid #fff;
+    padding:0 10px 0 0
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav ul {
+    margin: 7px 0;
+}
+.nav li:last-child{
+    border:none
+}
+
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav ul {
+    margin: 7px 0;
+}
+.nav li:last-child{
+    border:none
+}
+
+.CurrentUser {
+     width: 180px;
+    display: inline-block;
+    margin: 7px 0;
+      height: 90px;
+}
+
+nav.nav {
+    width: calc(100% - 180px);
+    float: left;
+}
+.CurrentUser .avatar {
+    width: 130%;
+    height: auto;
+    border-radius: initial;
+    padding: 0;
+    display: initial;
+}
+.CurrentUser p {
+    display: inline-block;
+    position: relative;
+    top: -15px;
+    left: 10px;
+    color: #fff;
+  	cursor:pointer;
+}
+.avatarBox {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 100%;
+    border: 3px solid #fff;
+    display: inline-block;
+}
+.Menu {
+    background-color: #f1f1f1;
+    width: 100%;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    top: -12px;
+}
+
+.Menu ul {
+    padding: 0px 11px;
+    margin: 8px 0;
+    color: #636363;
+}
+
+.Menu li {
+    list-style: none;
+  cursor:pointer
+}
+
+.notfound {
+    text-align: center;
+    margin: 43px 0;
+    display: block;
+}
+
+.notfound {
+    text-align: center;
+    margin: 43px 0;
+    display: block;
+}
+
+.notfound h2 {
+    font-size: 108px;
+    margin: 0;
+    padding: 0;
+    font-weight: bolder;
+    color:  #35A594;
+}
+
+.notfound h3 {
+    padding: 0;
+    margin: 0;
+    color:  #35A594;
+    font-size: 28px;
+}
+
+.notfound p {
+    font-size: 19px;
+    padding: 0;
+    margin: 6px 0 29px;
+    color: #646464;
+}
+a.notFoundButton {
+    background: #35A594;
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
 }
