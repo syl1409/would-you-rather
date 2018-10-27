@@ -33,6 +33,7 @@ function errorSavingAnswer (questions) {
   
 export function handleSaveAnswer (info) {
     return (dispatch, getState) => {
+      dispatch(showLoading())
       const { questions, users } = getState()
       const oldQuestions = JSON.parse(JSON.stringify(questions));
       const oldUsers = JSON.parse(JSON.stringify(users));
@@ -40,7 +41,7 @@ export function handleSaveAnswer (info) {
       dispatch(saveAnswer(info))
       dispatch(saveUserAnswer(info))
       
-      
+      dispatch(hideLoading())
        return saveQuestionAnswer(info)
         .catch((e) => {
           console.warn('Error in handleSaveAnswer: ', e)
@@ -49,6 +50,7 @@ export function handleSaveAnswer (info) {
          
           alert('The was an error on your anwser.')
         })
+      
       
     }
    
@@ -62,9 +64,9 @@ function newQuestion (question) {
 }
  export function handleNewQuestion (optionOneText, optionTwoText, ) {
   return (dispatch, getState) => {
+     dispatch(showLoading())
     const { authedUser } = getState()
     
-     dispatch(showLoading())
      return saveQuestion({
       optionOneText, 
       optionTwoText, 
