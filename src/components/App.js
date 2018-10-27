@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import { Redirect, Switch, BrowserRouter, Route } from 'react-router-dom'
+import { Switch, BrowserRouter, Route } from 'react-router-dom'
 
 
 
@@ -31,6 +31,7 @@ class App extends Component {
  <BrowserRouter>
       
       <Fragment>
+      <LoadingBar/>
       <Header/>
        <Switch>
       	

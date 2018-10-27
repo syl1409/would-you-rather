@@ -43,7 +43,7 @@ handleOptionChange = (e) => {
       return <Redirect to='/login' />
     }
     console.log('data', this.props);
-    const { id, userVotesFor, wasAnswered } = this.props
+    const { userVotesFor, wasAnswered } = this.props
     const {author, text1, text2, votes1, votes2, avatar, date} = this.props.question;
     const total = votes1.length + votes2.length;
     console.log('values',text2, userVotesFor)
@@ -70,13 +70,13 @@ handleOptionChange = (e) => {
 					<span className={text1 === userVotesFor ? 'badge active' : 'badge'}>Your answer</span>
 					<span className="answer">{text1}</span>
 				 	<Line percent={(votes1.length*100)/total} strokeWidth="4" strokeColor="#D3D3D3" />
-					<span className="results">{votes1.length} of {total}</span>
+					<span className="results">{votes1.length} of {total} | {(votes1.length*100)/total}%</span>
 				</li>
 				<li className={text2 === userVotesFor ? 'active' : ''}>
 					<span className={text2 === userVotesFor ? 'badge active' : 'badge'}>Your answer</span>
 					<span className="answer">{text2}</span>
 				 	<Line percent={(votes2.length*100)/total} strokeWidth="4" strokeColor="#D3D3D3" />
-					<span className="results">{votes2.length} of {total}</span>
+					<span className="results">{votes2.length} of {total} | {(votes2.length*100)/total}%</span>
 				</li>
 				
 			</ul>
@@ -102,7 +102,7 @@ handleOptionChange = (e) => {
           />
 		</div>
 <div className="question">
-			<h3>Results:</h3>
+			<h3>Would you rather:</h3>
  <form onSubmit={this.handleSubmit}>
     <div className="radio">
       <label>
@@ -141,8 +141,8 @@ handleOptionChange = (e) => {
  if(authedUser !== null){
   const { question_id } = props.match.params
   const question = questions[question_id] ? formatQuestion(questions[question_id], users) : null
-  const answer1 = question.votes1.find(x=> x == [authedUser]);
-  const answer2 = question.votes2.find(x=> x == [authedUser]);
+  const answer1 = question.votes1.find(x=> x === authedUser);
+  const answer2 = question.votes2.find(x=> x === authedUser);
   const wasAnswered = answer2 !== undefined || answer1 !== undefined ? true : false
   let userVotesFor;
 console.log('se respondio=?', wasAnswered, answer1, answer2)

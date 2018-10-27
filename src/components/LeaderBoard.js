@@ -1,4 +1,4 @@
-import React, { Component, Fragment  } from 'react'
+import React, { Component  } from 'react'
 import { connect } from 'react-redux'
 import UserCard from './UserCard'
 import { compareValues } from '../utils/helpers'
@@ -42,7 +42,7 @@ function mapStateToProps ({ users, authedUser  }) {
       }
       
       formatUsers.push(currentUser)
-    
+      return null
     })
 
   return {

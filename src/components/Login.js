@@ -1,4 +1,4 @@
-import React, { Component, Fragment  } from 'react'
+import React, { Component  } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
@@ -36,7 +36,7 @@ handleSelectChange =(e)=>{
       <div className="login">
       	<h2>Welcome!</h2>
         <div className="logo">
-              <img src="https://cdn-images-1.medium.com/max/800/0*1p4U99DAhsOHqX-m.jpg"/>
+              <img src="https://cdn-images-1.medium.com/max/800/0*1p4U99DAhsOHqX-m.jpg" alt="logo"/>
           </div>
       	<p>Choose a user</p>
       	<form  onSubmit={this.handleSubmit} >

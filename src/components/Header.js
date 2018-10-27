@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Nav from './Nav'
-import LoadingBar from 'react-redux-loading'
 import { setAuthedUser } from '../actions/authedUser'
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
@@ -23,6 +22,7 @@ class Header extends Component {
  
  logout = () => {
    this.props.dispatch(setAuthedUser(null))
+   this.setState( () => ({openMenu : false}) );
  }
 
 
