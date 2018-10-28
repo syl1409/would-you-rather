@@ -1,20 +1,20 @@
 import React, { Component  } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter  } from 'react-router-dom'
 
 
 class Login extends Component {
   state = {
     userId: 'sarahedo',
-    toDashboard: false
+    authed: false
   }
 
  handleSubmit = (e) => {
     e.preventDefault()
    this.props.dispatch(setAuthedUser(this.state.userId))
     this.setState(() => ({
-      toDashboard:true
+      authed:true
     }))
  }
 
@@ -25,12 +25,19 @@ handleSelectChange =(e)=>{
     }))
 }
   render() {
-    console.log('login', this.props);
+    console.log('login', this.props.location);
+   let lastpath;
+   if ( this.props.location.state !== undefined){
+   	lastpath =  this.props.location.state.prevLocation.pathname;
+   }else{
+   	lastpath = '/';
+   }
+	console.log('pevL',lastpath)
    const { users } = this.props;
-   const { toDashboard } = this.state;
+   const { authed } = this.state;
 	
-  if (toDashboard) {
-      return <Redirect to='/' />
+  if (authed) {
+      return <Redirect to={lastpath} />
     }
     return (
       <div className="login">
@@ -61,4 +68,4 @@ function mapStateToProps ({ users }) {
   }
 }
 
-export default connect(mapStateToProps)(Login)
+export default withRouter(connect(mapStateToProps)(Login))

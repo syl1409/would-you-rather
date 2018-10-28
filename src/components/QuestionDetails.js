@@ -10,7 +10,6 @@ import { Redirect } from 'react-router-dom'
    
     state = {
     selectedOption: 'optionOne',
-    toDashboar:false
   }
    
     handleSubmit = (e) => {
@@ -23,9 +22,7 @@ import { Redirect } from 'react-router-dom'
        authedUser,
        answer
      }))
-    this.setState(() => ({
-      toDashboard: true
-    }))
+
   }
 
 handleOptionChange = (e) => {
@@ -36,11 +33,12 @@ handleOptionChange = (e) => {
     }))
   }
   render() {
-    if (this.state.toDashboard === true) {
-      return <Redirect to='/' />
-    }
+   
       if (this.props.authedUser === null) {
-      return <Redirect to='/login' />
+      return <Redirect to={{
+            pathname: '/login',
+            state: { prevLocation: this.props.location }
+        }} />
     }
     console.log('data', this.props);
     const { userVotesFor, wasAnswered } = this.props

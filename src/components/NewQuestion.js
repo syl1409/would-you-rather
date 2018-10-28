@@ -37,7 +37,10 @@ class NewQuestion extends Component {
   render() {
     console.log('data', this.props.authedUser);
      if (this.props.authedUser === null ) {
-      return <Redirect to='/login' />
+      return <Redirect to={{
+            pathname: '/login',
+            state: { prevLocation: this.props.location }
+        }} />
     }
       
    if (this.state.toDashboard === true) {

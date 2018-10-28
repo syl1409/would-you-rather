@@ -20,7 +20,12 @@ class Dashboard extends Component {
     }
   render() {
      if (this.props.authedUser === null) {
-      return <Redirect to='/login' />
+      return <Redirect  to={{
+            pathname: '/login',
+            state: { prevLocation: this.props.location }
+        }} />
+        
+       
     }
     console.log('dashboard', this.props);
     const {answeredQuestionID, otherQuestionsID, authedUser } = this.props;

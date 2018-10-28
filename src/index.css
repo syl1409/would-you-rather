@@ -402,3 +402,6 @@ a.notFoundButton {
     text-decoration: none;
     border-radius: 4px;
 }
+.bodyCard {
+    margin: 0 0 30px 0;
+}

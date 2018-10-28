@@ -25,10 +25,10 @@ class Question extends Component {
 		</div>
 
 		<div className="question">
-			<h3>Would You Rather:</h3>
+			<h3>...</h3>
 			<ul>
-				<li>{text1}</li>
-				<li>{text2}</li>
+				<li>{text1} <b>or</b> {text2}</li>
+
 			</ul>
 		</div>
 	  </div>

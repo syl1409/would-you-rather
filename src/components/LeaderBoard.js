@@ -10,7 +10,10 @@ class LeaderBoard extends Component {
 
   render() {
      if (this.props.authedUser === null) {
-      return <Redirect to='/login' />
+      return <Redirect to={{
+            pathname: '/login',
+            state: { prevLocation: this.props.location }
+        }} />
     }
     console.log('leaderBoard', this.props);
     const { users } = this.props;
