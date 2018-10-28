@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Nav from './Nav'
-import { setAuthedUser } from '../actions/authedUser'
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { withRouter } from 'react-router-dom'
 
 
 
@@ -21,7 +21,10 @@ class Header extends Component {
 
  
  logout = () => {
-   this.props.dispatch(setAuthedUser(null))
+   this.props.history.push({
+  pathname: '/login',
+
+})
    this.setState( () => ({openMenu : false}) );
  }
 
@@ -70,4 +73,4 @@ currentUser: actualUser
 
 
 
-export default connect(mapStateToProps)(Header)
+export default withRouter(connect(mapStateToProps)(Header))

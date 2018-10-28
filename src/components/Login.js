@@ -10,6 +10,10 @@ class Login extends Component {
     authed: false
   }
 
+componentDidMount(){
+ this.props.dispatch(setAuthedUser(null))
+}
+
  handleSubmit = (e) => {
     e.preventDefault()
    this.props.dispatch(setAuthedUser(this.state.userId))
