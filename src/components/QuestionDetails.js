@@ -40,6 +40,14 @@ handleOptionChange = (e) => {
             state: { prevLocation: this.props.location }
         }} />
     }
+
+ if (this.props.notFound) {
+      return <Redirect to={{
+            pathname: '/notfound',
+            state: { prevLocation: this.props.location }
+        }} />
+    }
+
     console.log('data', this.props);
     const { userVotesFor, wasAnswered } = this.props
     const {author, text1, text2, votes1, votes2, avatar, date} = this.props.question;
@@ -139,22 +147,24 @@ handleOptionChange = (e) => {
  if(authedUser !== null){
   const { question_id } = props.match.params
   const question = questions[question_id] ? formatQuestion(questions[question_id], users) : null
-  const answer1 = question.votes1.find(x=> x === authedUser);
-  const answer2 = question.votes2.find(x=> x === authedUser);
-  const wasAnswered = answer2 !== undefined || answer1 !== undefined ? true : false
-  let userVotesFor;
-console.log('se respondio=?', wasAnswered, answer1, answer2)
-  if (wasAnswered){
-console.log('se respondio')
-	if(answer1){
-console.log('respuesta 1', answer1)
-     userVotesFor = question.text1
+	if(question !== null){
+
+       const answer1 = question.votes1.find(x=> x === authedUser);
+        const answer2 = question.votes2.find(x=> x === authedUser);
+        const wasAnswered = answer2 !== undefined || answer1 !== undefined ? true : false
+        let userVotesFor;
+      console.log('se respondio=?', wasAnswered, answer1, answer2)
+        if (wasAnswered){
+
+          if(answer1){
+
+           userVotesFor = question.text1
     }else{
-console.log('respuesta 2', answer2, question.text2)
+
      userVotesFor = question.text2
     }
   } 
-  console.log(authedUser, question.votes1, question.votes2, wasAnswered)
+
    return {
     id:question_id,
     question: question,
@@ -163,7 +173,13 @@ console.log('respuesta 2', answer2, question.text2)
 	authedUser
 
        
+}
+ 
+  }else{
+ return {
+    notFound:true
   }
+}
 }else{
  return {
     authedUser

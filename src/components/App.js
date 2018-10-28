@@ -37,7 +37,7 @@ class App extends Component {
       	
      			 <Route path='/login' exact component={Login} />
                   <Route path='/' exact component={Dashboard} />
-                  <Route path='/question/:question_id' component={QuestionDetails} />
+                  <Route path='/questions/:question_id' component={QuestionDetails} />
                   <Route path='/add' exact component={NewQuestion} />
 				  <Route path='/leaderboard' exact component={LeaderBoard} />
 				  <Route path='*' exact={true} component={NotFound} />

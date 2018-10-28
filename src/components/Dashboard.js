@@ -27,10 +27,9 @@ class Dashboard extends Component {
         
        
     }
-    console.log('dashboard', this.props);
-    const {answeredQuestionID, otherQuestionsID, authedUser } = this.props;
+
+    const {answeredQuestionID, otherQuestionsID} = this.props;
 	const { currentView } = this.state;
-	console.log('dashboard', authedUser);
  
     return (
       <div className="containerApp">
@@ -78,7 +77,7 @@ class Dashboard extends Component {
 
 function mapStateToProps ({ questions, users, authedUser }) {
   if(authedUser !== null){
- console.log('questions', questions)
+
   const actualUser = Object.values(users).filter(x=> x.id === authedUser)[0];
   
   

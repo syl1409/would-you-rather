@@ -9,7 +9,6 @@ export default function questions( state = {}, action){
               
         }
       case ERROR_SAVING_ANSWER:
-        console.log(state, action.questions)
         return {
                 ...state,
                 ...action.questions
@@ -18,7 +17,6 @@ export default function questions( state = {}, action){
         
    		 case SAVE_ANSWER :
             const { answer, authedUser, qid } = action
-            console.log('reducer', action, state)
 
              return {
                 ...state,
@@ -32,7 +30,6 @@ export default function questions( state = {}, action){
 
     		}
       case NEW_QUESTION :
-        console.log('reducer', action, state)
         return{
           ...state,
           [action.question.id]: action.question

@@ -15,7 +15,6 @@ class Header extends Component {
 
 	toggleMenu=()=>{
       this.setState( (state) => ({openMenu : !state.openMenu}) );
-      console.log(this.state)
     }
 
 
@@ -30,7 +29,6 @@ class Header extends Component {
 
 
   render() {
-    console.log('Header', this.props);
     const {currentUser } = this.props;
     
     return (

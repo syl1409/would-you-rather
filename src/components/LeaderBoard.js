@@ -15,7 +15,7 @@ class LeaderBoard extends Component {
             state: { prevLocation: this.props.location }
         }} />
     }
-    console.log('leaderBoard', this.props);
+
     const { users } = this.props;
    
     return (

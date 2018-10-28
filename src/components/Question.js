@@ -33,7 +33,7 @@ class Question extends Component {
 		</div>
 	  </div>
 	  <div className="fotterCard">
-	  	<Link to={`/question/${id}`} className="button">Check detail</Link>
+	  	<Link to={`/questions/${id}`} className="button">Check detail</Link>
 
 	  </div>
 	  
